@@ -1,0 +1,46 @@
+====== Home Lab Documentation ======
+
+===== Hardware Setup =====
+  * **Dell OptiPlex 5050** repurposed as a primary lab machine.
+  * **Raspberry Pi** used for DNS sinkhole and web services.
+  * **USB Flash Drives**:
+    * 256 GB USB used initially for Windows 11 bootable media.  
+      → Lesson learned: only ~16 GB is required.
+    * Another USB prepared as a bootable **Proxmox installer**.
+
+===== Operating Systems & Hypervisors =====
+  * **Windows 11**: Installed on Dell OptiPlex 5050 as a baseline OS.
+  * **Proxmox VE**: Installed on the Dell OptiPlex via USB for virtualization.
+
+===== Virtual Machines & Services =====
+  * **Pi-hole (Raspberry Pi)**:
+    * Configured as a DNS sinkhole for ad/tracker blocking.
+    * Integrated into the home network.
+  * **Ubuntu Server (Proxmox VM)**:
+    * Created as a base server OS for experiments.
+  * **TrueNAS (Proxmox VM)**:
+    * Deployed for network-attached storage (NAS).
+  * **OPNsense (Proxmox VM)**:
+    * Installed as a firewall/router for segmentation and security.
+
+===== Web Services & Documentation =====
+  * **Apache2 on Raspberry Pi**: Installed and configured.
+  * **DokuWiki**:
+    * Installed under `/var/www/html/dokuwiki`.
+    * VirtualHost configured in Apache for port `8080`.
+    * Being used as the central documentation hub.
+
+===== Networking & Security Projects =====
+  * **DNS Sinkhole**: Implemented using Pi-hole.
+  * **Packet Capture**: Began experimenting with traffic analysis.
+
+===== Lessons Learned =====
+  - USB boot media only needs ~16 GB for Windows install.
+  - Proxmox allows running multiple networking/security VMs.
+  - Pi-hole provides security benefits and traffic visibility.
+  - DokuWiki is now the central place to log lab progress.
+
+===== ✅ Today’s Achievements =====
+  * Deployed Pi-hole, packet capture, and DokuWiki.
+  * Debugged and configured Apache VirtualHost.
+  * Established a sustainable documentation workflow.

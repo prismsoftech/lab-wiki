@@ -1,0 +1,11 @@
+# DokuWiki internals we don’t want in Git
+cache/
+index/
+locks/
+tmp/
+attic/
+meta/
+*.lock
+*.idx
+*.log
+.DS_Store
