@@ -1,3 +1,4 @@
+HEAD
 data/cache/
 data/index/
 data/locks/
@@ -14,3 +15,15 @@ data/media_meta/
 vendor/
 *.swp
 *.swo
+# DokuWiki internals we don’t want in Git
+cache/
+index/
+locks/
+tmp/
+attic/
+meta/
+*.lock
+*.idx
+*.log
+.DS_Store
+>>>>>>> c98f8f523d0ffdf44d221e6479423a6db1f7ccd1
