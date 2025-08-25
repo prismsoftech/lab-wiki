@@ -1,0 +1,96 @@
+====== Home Lab Documentation ======
+
+===== Hardware Setup =====
+  * **Dell OptiPlex 5050** repurposed as a primary lab machine.
+  * **Raspberry Pi** used for DNS sinkhole and web services.
+  * **USB Flash Drives**:
+    * 256 GB USB used initially for Windows 11 bootable media.  
+      → Lesson learned: only ~16 GB is required.
+    * Another USB prepared as a bootable **Proxmox installer**.
+
+===== Operating Systems & Hypervisors =====
+  * **Windows 11**: Installed on Dell OptiPlex 5050 as a baseline OS.
+  * **Proxmox VE**: Installed on the Dell OptiPlex via USB for virtualization.
+
+===== Virtual Machines & Services =====
+  * **Pi-hole (Raspberry Pi)**:
+    * Configured as a DNS sinkhole for ad/tracker blocking.
+    * Integrated into the home network.
+  * **Ubuntu Server (Proxmox VM)**:
+    * Created as a base server OS for experiments.
+  * **TrueNAS (Proxmox VM)**:
+    * Deployed for network-attached storage (NAS).
+  * **OPNsense (Proxmox VM)**:
+    * Installed as a firewall/router for segmentation and security.
+
+===== Web Services & Documentation =====
+  * **Apache2 on Raspberry Pi**: Installed and configured.
+  * **DokuWiki**:
+    * Installed under `/var/www/html/dokuwiki`.
+    * VirtualHost configured in Apache for port `8080`.
+    * Being used as the central documentation hub.
+
+===== Networking & Security Projects =====
+  * **DNS Sinkhole**: Implemented using Pi-hole.
+  * **Packet Capture**: Began experimenting with traffic analysis.
+
+===== Lessons Learned =====
+  - USB boot media only needs ~16 GB for Windows install.
+  - Proxmox allows running multiple networking/security VMs.
+  - Pi-hole provides security benefits and traffic visibility.
+  - DokuWiki is now the central place to log lab progress.
+
+===== Today’s Achievements =====
+  * Deployed Pi-hole, packet capture, and DokuWiki.
+  * Debugged and configured Apache VirtualHost.
+  * Established a sustainable documentation workflow.
+
+====== Lab Network Setup ======
+
+=== Cisco 2600 Router Configuration / 24AUG25 ===
+  * **FastEthernet0/0 (WAN)**  
+    - IP: 192.168.1.36 (DHCP from ISP)  
+    - Connected to ISP router (192.168.1.1)  
+  * **FastEthernet0/1 (LAN)**  
+    - IP: 192.168.10.1/24 (LAN Gateway)  
+    - Connected to Catalyst 2950 Switch (Port 1)  
+  * **Routing**  
+    - Default route → 192.168.1.1 (ISP)  
+  * **Verification**  
+    - Pings to 192.168.1.1 successful  
+    - Pings to 8.8.8.8 & www.google.com successful after NAT configuration  
+
+=== Cisco Catalyst 2950 Switch ===
+  * **Management Interface (VLAN1)**  
+    - IP: 192.168.1.50/24  
+    - Default gateway: 192.168.1.1  
+  * **Ports**  
+    - FastEthernet0/1 → Connected to Router 2600 (LAN side)  
+    - Other ports available for lab devices  
+  * **Verification**  
+    - Pings to router successful  
+    - Switch reachable via management IP  
+
+=== Proxmox Host ===
+  * **IP Address**: 192.168.1.100  
+  * Running multiple VMs:  
+    - Ubuntu Server (lab services)  
+    - Docker Host  
+    - Future: Security/Networking VMs  
+
+=== Raspberry Pi 4 ===
+  * **IP Address**: 192.168.1.96  
+  * Role: DNS Sinkhole (Pi-hole)  
+  * Provides DNS filtering for the lab  
+
+=== MacBook Pro (Mgmt Workstation) ===
+  * **IP Address**: 192.168.1.117  
+  * Used for:  
+    - Console access (via PuTTY)  
+    - Proxmox management  
+    - Lab documentation in DokuWiki  
+
+=== Current Topology ===
+  * ISP Router (192.168.1.1) ↔ Cisco 2600 (WAN: 192.168.1.36)  
+  * Cisco 2600 (LAN: 192.168.10.1) ↔ Cisco Catalyst 2950 (Mgmt IP: 192.168.1.50)  
+  * Lab devices (Proxmox, Raspberry Pi, MacBook) on 192.168.1.x network

@@ -1,0 +1,16 @@
+data/cache/
+data/index/
+data/locks/
+data/tmp/
+data/attic/
+data/media_meta?
+cat > .gitignore <<'EOF'
+data/cache/
+data/index/
+data/locks/
+data/tmp/
+data/attic/
+data/media_meta/
+vendor/
+*.swp
+*.swo
